@@ -5,6 +5,18 @@
 /.pnp
 .pnp.js
 
+
+# .NET
+**/bin/
+**/obj/
+
+# Node
+**/node_modules/
+
+# Environment / secrets
+**/.env
+**/.env.*
+!**/.env.example
 # testing
 /coverage
 

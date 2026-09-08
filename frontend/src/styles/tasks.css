@@ -1,0 +1,141 @@
+/* TASKS */
+
+.todo {
+  grid-column: 1 / -1;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 0;
+  border-bottom: 1px solid #222225;
+  color: #d6d6da;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.todo-item:last-child {
+  border-bottom: 0;
+}
+
+.todo-item.done {
+  color: #68686e;
+  text-decoration: line-through;
+}
+
+/* CHECKBOX */
+
+.todo-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #4a4a4f;
+  border-radius: 50%;
+  background: transparent;
+  color: transparent;
+  font-size: 11px;
+  line-height: 1;
+  transition: border-color 0.2s ease;
+}
+
+.todo-item:hover .todo-checkbox {
+  border-color: #88888e;
+}
+
+.todo-checkbox.checked {
+  border-color: #77777e;
+  background: transparent;
+  color: #f5f5f7;
+}
+
+.todo-checkbox.checked::after {
+  content: "✓";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  color: #f5f5f7;
+}
+
+
+.todo-item:hover .todo-checkbox {
+  border-color: #77777e;
+}
+
+
+
+.todo-item:active .todo-checkbox {
+  transform: scale(0.9);
+}
+
+.task-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.task-section {
+  padding: 20px;
+  border: 1px solid #242426;
+  border-radius: 14px;
+  background: #111113;
+}
+
+.task-section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.task-section-header h2 {
+  margin: 6px 0 0;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.section-label {
+  color: #55555b;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+}
+
+.task-count {
+  color: #77777e;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.task-progress {
+  width: 100%;
+  height: 3px;
+  margin: 18px 0 8px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #242426;
+}
+
+.task-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: #f5f5f7;
+  transition: width 0.25s ease;
+}
+
+.task-list {
+  margin-top: 5px;
+}
+
+@media (max-width: 700px) {
+  .task-sections {
+    grid-template-columns: 1fr;
+  }
+}

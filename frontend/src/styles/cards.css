@@ -1,0 +1,111 @@
+/* CARDS */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  min-height: 150px;
+  padding: 22px;
+  border: 1px solid #242426;
+  border-radius: 14px;
+  background: #111113;
+}
+
+.label {
+  display: block;
+  margin-bottom: 20px;
+  color: #66666d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.card strong {
+  display: block;
+  font-size: 25px;
+  font-weight: 650;
+}
+
+.card p {
+  color: #77777e;
+  font-size: 12px;
+}
+
+.card small {
+  color: #77777e;
+  font-size: 11px;
+}
+
+.progress {
+  height: 5px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #29292c;
+}
+
+.progress div {
+  height: 100%;
+  border-radius: inherit;
+  background: #e8e8e8;
+}
+
+.event {
+  margin-bottom: 14px;
+  color: #99999f;
+  font-size: 13px;
+}
+
+.event span {
+  margin-left: 18px;
+  color: #eee;
+}
+
+.finance,
+.health {
+  min-height: 180px;
+}
+
+.finance strong {
+  margin-bottom: 12px;
+}
+
+.finance small {
+  color: #85858b;
+}
+
+.health strong {
+  margin-bottom: 15px;
+}
+
+.car {
+  grid-column: 1 / -1;
+  min-height: 150px;
+}
+
+.car-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.car-row strong {
+  font-size: 17px;
+}
+
+.status {
+  color: #85858b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.car p {
+  margin: 12px 0 0;
+}
+
+.car b {
+  color: #ddd;
+}
