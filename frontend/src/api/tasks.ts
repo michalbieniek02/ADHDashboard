@@ -1,6 +1,6 @@
 import type { Task } from "../types";
 
-const API_URL = "http://localhost:5273";
+const API_URL = import.meta.env.VITE_API_URL;
 
 function getToken() {
   return localStorage.getItem("jwt");
