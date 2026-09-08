@@ -28,9 +28,18 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var payload = await GoogleJsonWebSignature.ValidateAsync(
-                request.Credential
-            );
+            var settings = new GoogleJsonWebSignature.ValidationSettings
+{
+    Audience = new[]
+    {
+        "1019281453928-s7igkogp74to2mhhlf5ij5btci7vs4ge.apps.googleusercontent.com"
+    }
+};
+
+var payload = await GoogleJsonWebSignature.ValidateAsync(
+    request.Credential,
+    settings
+);
 
             var user = _db.Users.FirstOrDefault(
                 x => x.GoogleId == payload.Subject
@@ -92,13 +101,15 @@ return Ok(new
     }
 });
         }
-        catch
-        {
-            return Unauthorized(new
-            {
-                message = "Nieprawidłowy token Google"
-            });
-        }
+        catch (Exception ex)
+{
+    Console.WriteLine($"GOOGLE LOGIN ERROR: {ex}");
+
+    return Unauthorized(new
+    {
+        message = ex.Message
+    });
+}
     }
 }
 
