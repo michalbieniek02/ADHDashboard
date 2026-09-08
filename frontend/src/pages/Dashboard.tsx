@@ -1,4 +1,5 @@
 
+import MarketTicker from "../components/MarketTicker";
 import type { Task, Income } from "../types";
 type DashboardProps = {
   tasks: Task[];
@@ -45,6 +46,7 @@ function Dashboard({
   return (
     <section className="content">
       <h1>Today</h1>
+      <MarketTicker />
 
       <div className="grid">
 
