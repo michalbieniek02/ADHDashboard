@@ -176,3 +176,10 @@
     gap: 16px;
   }
 }
+.market-price.price-up {
+  color: #35d07f;
+}
+
+.market-price.price-down {
+  color: #ff5c5c;
+}
