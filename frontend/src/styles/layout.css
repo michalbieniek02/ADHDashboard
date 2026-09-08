@@ -5,51 +5,49 @@
 }
 @media (max-width: 768px) {
   .app {
-    display: block; /* flex psuje position:fixed w niektórych przeglądarkach przy override */
-  }
-
-  .mobile-menu-btn {
-    display: block;
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    z-index: 2001;
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    font-size: 24px;
-    padding: 8px 12px;
-    border-radius: 6px;
+    flex-direction: column;
   }
 
   .sidebar {
-    position: fixed !important;
-    top: 0;
-    left: -100%;
-    height: 100vh;
-    width: 250px;
-    z-index: 2000;
-    background: #101012 !important;
-    transition: left 0.3s ease;
-    overflow-y: auto;
-  }
-
-  .sidebar.open {
-    left: 0 !important;
-  }
-
-  .sidebar-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 1999;
-  }
-
-  .main {
     width: 100%;
+    min-height: auto;
+    padding: 12px;
+    border-right: none;
+    border-bottom: 1px solid #242426;
+  }
+
+  .logo {
+    display: none; /* opcjonalnie chowamy logo żeby zaoszczędzić miejsce */
+  }
+
+  .sidebar nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-section {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-section > span {
+    display: none; /* chowamy nagłówki LIFE/HEALTH/ORGANIZE, zbędne na wąskim pasku */
+  }
+
+  .nav-item {
+    width: auto;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 12px;
   }
 }
+
+
 
 /* SIDEBAR */
 
