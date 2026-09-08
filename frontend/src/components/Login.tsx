@@ -1,8 +1,8 @@
 import { GoogleLogin } from "@react-oauth/google";
-
 function Login() {
   const handleSuccess = async (credentialResponse: any) => {
   console.log("GOOGLE LOGIN:", credentialResponse);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   if (!credentialResponse.credential) {
     console.log("Brak credential");
@@ -10,7 +10,8 @@ function Login() {
   }
 
   try {
-    const response = await fetch("http://localhost:5273/auth/google", {
+    const response = await fetch(
+  `${API_URL}/auth/google`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
