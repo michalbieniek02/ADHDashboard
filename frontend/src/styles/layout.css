@@ -3,9 +3,12 @@
   display: flex;
   background: #0d0d0f;
 }
-body {
-  border: 10px solid red !important;
+@media (max-width: 768px) {
+  body {
+    background: red !important;
+  }
 }
+
 
 @media (max-width: 768px) {
   .app {
