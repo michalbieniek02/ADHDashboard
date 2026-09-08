@@ -1,81 +1,104 @@
 import { useState } from "react";
 
-type SidebarProps = {
-  currentPage: string;
-  setCurrentPage: (page: string) => void;
-};
+import Sidebar from "./components/Sidebar";
+import Topbar from "./components/Topbar";
+import QuickAdd from "./components/QuickAdd";
+import Finance from "./components/Finance";
+import Login from "./components/Login";
+import Dashboard from "./pages/Dashboard";
+import Expenses from "./pages/Expenses";
+import { useTasks } from "./hooks/useTasks";
+import { useFinance } from "./hooks/useFinance";
 
-function Sidebar({
-  currentPage,
-  setCurrentPage,
-}: SidebarProps) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const navItem = (
-    page: string,
-    label: string
-  ) => (
-    <button
-      className={`nav-item ${
-        currentPage === page ? "active" : ""
-      }`}
-      onClick={() => {
-        setCurrentPage(page);
-        setMobileOpen(false); // zamknij po kliknięciu na mobile
-      }}
-    >
-      {currentPage === page ? "◉" : "◌"} {label}
-    </button>
+function App() {
+  const [loggedIn, setLoggedIn] = useState(
+    !!localStorage.getItem("jwt")
   );
 
-  return (
-    <>
-      <button
-        className="mobile-menu-btn"
-        onClick={() => setMobileOpen(true)}
-      >
-        ☰
-      </button>
+  const [currentPage, setCurrentPage] =
+    useState("dashboard");
 
-      {mobileOpen && (
-        <div
-          className="sidebar-overlay"
-          onClick={() => setMobileOpen(false)}
+  const [quickAddOpen, setQuickAddOpen] =
+    useState(false);
+
+ const {
+  tasks,
+  addTask,
+  toggleTask,
+  deleteTask,
+} = useTasks(loggedIn);
+
+  const {
+    balance,
+    expenses,
+    incomes,
+    loadExpenses,
+    addExpense,
+    addIncome,
+  } = useFinance(loggedIn);
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("user");
+
+    setLoggedIn(false);
+  };
+
+  if (!loggedIn) {
+    return <Login />;
+  }
+
+  return (
+    <div className="app">
+
+      <Sidebar
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+
+      <main className="main">
+
+        <Topbar
+          onLogout={handleLogout}
+          onQuickAdd={() =>
+            setQuickAddOpen(true)
+          }
+        />
+
+       {currentPage === "finance" ? (
+  <Finance
+    incomes={incomes}
+    expenses={expenses}
+    onAddIncome={addIncome}
+    balance={balance}
+    onLoadExpenses={loadExpenses}
+  />
+) : currentPage === "expenses" ? (
+  <Expenses />
+) : (
+  <Dashboard
+    tasks={tasks}
+    balance={balance}
+    toggleTask={toggleTask}
+    deleteTask={deleteTask}
+    incomes={incomes}
+  />
+)}
+
+      </main>
+
+      {quickAddOpen && (
+        <QuickAdd
+          onClose={() =>
+            setQuickAddOpen(false)
+          }
+          onAddTask={addTask}
+          onAddExpense={addExpense}
         />
       )}
 
-      <aside className={`sidebar ${mobileOpen ? "open" : ""}`}>
-        <div className="logo">ADHDashboard</div>
-
-        <nav>
-          <div className="nav-section">
-            {navItem("dashboard", "Overview")}
-          </div>
-
-          <div className="nav-section">
-            <span>LIFE</span>
-            {navItem("finance", "Finanse")}
-            {navItem("expenses", "Wydatki")}
-            {navItem("car", "Samochód")}
-          </div>
-
-          <div className="nav-section">
-            <span>HEALTH</span>
-            {navItem("diet", "Dieta")}
-            {navItem("training", "Ćwiczenia")}
-          </div>
-
-          <div className="nav-section">
-            <span>ORGANIZE</span>
-            {navItem("meetings", "Spotkania")}
-            {navItem("shopping", "Zakupy")}
-            {navItem("fridge", "Lodówka")}
-            {navItem("files", "Pliki")}
-          </div>
-        </nav>
-      </aside>
-    </>
+    </div>
   );
 }
 
-export default Sidebar;
+export default App; 
