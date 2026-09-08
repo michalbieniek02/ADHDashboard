@@ -3,58 +3,6 @@
   display: flex;
   background: #0d0d0f;
 }
-@media (max-width: 768px) {
-  body {
-    background: red !important;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .app {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    min-height: auto;
-    padding: 12px;
-    border-right: none;
-    border-bottom: 1px solid #242426;
-  }
-
-  .logo {
-    display: none; /* opcjonalnie chowamy logo żeby zaoszczędzić miejsce */
-  }
-
-  .sidebar nav {
-    display: flex;
-    overflow-x: auto;
-    gap: 4px;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .nav-section {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-
-  .nav-section > span {
-    display: none; /* chowamy nagłówki LIFE/HEALTH/ORGANIZE, zbędne na wąskim pasku */
-  }
-
-  .nav-item {
-    width: auto;
-    white-space: nowrap;
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-}
-
-
 
 /* SIDEBAR */
 
@@ -175,4 +123,50 @@
   margin: 0 0 24px;
   font-size: 25px;
   font-weight: 650;
+}
+
+/* MOBILE — musi być NA KOŃCU pliku, żeby wygrywać z regułami bazowymi */
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 12px;
+    border-right: none;
+    border-bottom: 1px solid #242426;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-section {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-section > span {
+    display: none;
+  }
+
+  .nav-item {
+    width: auto;
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
 }
