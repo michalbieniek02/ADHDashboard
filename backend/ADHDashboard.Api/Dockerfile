@@ -4,9 +4,13 @@ EXPOSE 8080
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["ADHDashboard.Api.csproj", "./"]
-RUN dotnet restore "ADHDashboard.Api.csproj"
+
+COPY ["backend/ADHDashboard.Api/ADHDashboard.Api.csproj", "backend/ADHDashboard.Api/"]
+RUN dotnet restore "backend/ADHDashboard.Api/ADHDashboard.Api.csproj"
+
 COPY . .
+WORKDIR "/src/backend/ADHDashboard.Api"
+
 RUN dotnet build "ADHDashboard.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
