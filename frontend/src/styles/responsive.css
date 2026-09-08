@@ -2,7 +2,7 @@
 
 @media (max-width: 800px) {
   .sidebar {
-    display: none;
+    display: flex;
   }
 
   .topbar {
